@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Artificial Intelligence Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="mosque">
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Visit Malaysia 2026</h2>
+            <small>Malaysia, Truly Asia</small>
+        </div>
+ 
+        <div class="chat-content" id="chat-content">
+            </div>
+
+        <div class="chat-input">
+            <div class="toolbox-wrapper">
+                <button id="quick-help-btn" onclick="toggleQuickMenu()">🧳</button>
+
+                <div id="quick-help-menu" class="hidden">
+                     <div class="quick-help-header">Traveler's Toolbox</div>
+                    <button onclick="addToolMessage('hotel')">🏨 Book Hotels</button>
+                    <button onclick="addToolMessage('delivery')">🍕 Food Delivery</button>
+                    <button onclick="addToolMessage('transport')">🚗 E-Hailing</button>
+                    <button onclick="addToolMessage('maps')">🗺️ Routes & Maps</button>
+                    </div>
+            </div>
+
+            <input type="text" id="userInput" placeholder="Type your message here...">
+            <button class="send-btn">Send</button>
+         </div>
+    </div>
+
+    <div class="controls-anchor">
+        <div class="click-me-hint">CLICK ME <span style="font-size: 26px;">⤵</span></div>
+        <div class="rover-container" onclick="cycleTheme()">
+             <div class="horizontal-switch">
+                <div class="toggle-knob"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
