@@ -108,7 +108,7 @@ input { flex: 1; padding: 10px 15px; border-radius: 30px; border: 1px solid #ddd
 /* THEME CONTROLS */
 .controls-anchor { position: fixed; bottom: 40px; right: 40px; display: flex; flex-direction: column; align-items: flex-end; }
 
-/* --- 1. BASE STYLES (Applies to all devices) --- */
+/* --- 1. BASE STYLES (Applies to all) --- */
 .click-me-hint {
     margin-bottom: 12px;
     font-weight: 800;
@@ -117,7 +117,6 @@ input { flex: 1; padding: 10px 15px; border-radius: 30px; border: 1px solid #ddd
     display: flex;
     align-items: center;
     gap: 10px;
-    /* REMOVED the animation line from here so it doesn't fly by default */
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 }
 
@@ -129,8 +128,7 @@ input { flex: 1; padding: 10px 15px; border-radius: 30px; border: 1px solid #ddd
     backdrop-filter: blur(10px);
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    /* Added this to prevent the container from being wider than a phone screen */
-    max-width: fit-content; 
+    max-width: fit-content;
 }
 
 .horizontal-switch { 
@@ -152,23 +150,27 @@ input { flex: 1; padding: 10px 15px; border-radius: 30px; border: 1px solid #ddd
     transition: transform 0.5s; 
 }
 
-/* --- 2. THEME SWITCHING (Stays exactly the same) --- */
+/* --- 2. THEME SWITCHING (Laptop & Mobile) --- */
 [data-theme="mosque"] .toggle-knob { transform: translateX(0); background: #F48FB1; }
 [data-theme="batucaves"] .toggle-knob { transform: translateX(26px); background: #FFD700; }
 [data-theme="theanhou"] .toggle-knob { transform: translateX(51px); background: #B71C1C; }
 
-/* --- 3. THE "FLYING" LOGIC (Laptop Only) --- */
+/* --- 3. LAPTOP ONLY: Flying Effect --- */
 @media screen and (min-width: 769px) {
     .click-me-hint {
-        animation: bounce 2.5s infinite; /* Only flies on laptop */
+        animation: bounce 2.5s infinite;
     }
 }
 
-/* --- 4. SMARTPHONE ADJUSTMENTS (No Flying) --- */
+/* --- 4. SMARTPHONE ONLY: Hide Hint & Shrink Switch --- */
 @media screen and (max-width: 768px) {
     .click-me-hint {
-        font-size: 16px; /* Slightly smaller text for better fit */
-        justify-content: center; /* Centers the text on mobile */
+        display: none; /* Hides the "Click Me" words entirely */
+    }
+
+    .rover-container {
+        margin: 5px auto; /* Centers the switch and reduces spacing */
+        transform: scale(0.85); /* Makes the switch 15% smaller so it blocks less */
     }
 }
 
