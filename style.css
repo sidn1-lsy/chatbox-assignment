@@ -108,6 +108,7 @@ input { flex: 1; padding: 10px 15px; border-radius: 30px; border: 1px solid #ddd
 /* THEME CONTROLS */
 .controls-anchor { position: fixed; bottom: 40px; right: 40px; display: flex; flex-direction: column; align-items: flex-end; }
 
+/* --- 1. BASE STYLES (Applies to all devices) --- */
 .click-me-hint {
     margin-bottom: 12px;
     font-weight: 800;
@@ -116,10 +117,9 @@ input { flex: 1; padding: 10px 15px; border-radius: 30px; border: 1px solid #ddd
     display: flex;
     align-items: center;
     gap: 10px;
-    animation: bounce 2.5s infinite;
+    /* REMOVED the animation line from here so it doesn't fly by default */
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 }
-
 
 .rover-container {
     padding: 5px;
@@ -129,18 +129,50 @@ input { flex: 1; padding: 10px 15px; border-radius: 30px; border: 1px solid #ddd
     backdrop-filter: blur(10px);
     cursor: pointer;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    /* Added this to prevent the container from being wider than a phone screen */
+    max-width: fit-content; 
 }
 
+.horizontal-switch { 
+    width: 80px; 
+    height: 30px; 
+    background: rgba(0,0,0,0.4); 
+    border-radius: 20px; 
+    position: relative; 
+}
 
-.horizontal-switch { width: 80px; height: 30px; background: rgba(0,0,0,0.4); border-radius: 20px; position: relative; }
-.toggle-knob { width: 22px; height: 22px; background: white; border-radius: 50%; position: absolute; top: 4px; left: 4px; transition: transform 0.5s; }
+.toggle-knob { 
+    width: 22px; 
+    height: 22px; 
+    background: white; 
+    border-radius: 50%; 
+    position: absolute; 
+    top: 4px; 
+    left: 4px; 
+    transition: transform 0.5s; 
+}
 
-
+/* --- 2. THEME SWITCHING (Stays exactly the same) --- */
 [data-theme="mosque"] .toggle-knob { transform: translateX(0); background: #F48FB1; }
 [data-theme="batucaves"] .toggle-knob { transform: translateX(26px); background: #FFD700; }
 [data-theme="theanhou"] .toggle-knob { transform: translateX(51px); background: #B71C1C; }
 
+/* --- 3. THE "FLYING" LOGIC (Laptop Only) --- */
+@media screen and (min-width: 769px) {
+    .click-me-hint {
+        animation: bounce 2.5s infinite; /* Only flies on laptop */
+    }
+}
 
+/* --- 4. SMARTPHONE ADJUSTMENTS (No Flying) --- */
+@media screen and (max-width: 768px) {
+    .click-me-hint {
+        font-size: 16px; /* Slightly smaller text for better fit */
+        justify-content: center; /* Centers the text on mobile */
+    }
+}
+
+/* --- 5. ANIMATION DEFINITION --- */
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
     40% {transform: translateY(-15px);}
